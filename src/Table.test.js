@@ -1,9 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Table from "./Table";
+import Table from "./";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Table />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("<Table />", () => {
+  it("should render table component", () => {
+    let data = [];
+    let dispatch = jest.fn();
+    const div = document.createElement("div");
+    ReactDOM.render(<Table data={[]} componentDidMount={dispatch} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+  it("should check the fetchData in componentDidMount fired so there is data to display", () => {
+    let data = [
+      {
+        id: 1,
+        name: "Leanne Graham",
+        username: "Bret",
+        email: "Sincere@april.biz",
+        address: [Object],
+        phone: "1-770-736-8031 x56442",
+        website: "hildegard.org",
+        company: [Object]
+      }
+    ];
+    const dispatch = jest.fn();
+    const wrapper = shallow(<Table data={data} componentDidMount={dispatch} />);
+    expect(dispatch).toHaveBeenCalledTimes(1);
+  });
 });
