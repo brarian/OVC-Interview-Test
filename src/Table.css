@@ -9,8 +9,9 @@ table {
 }
 
 .main {
-  justify-content: center;
-  padding-top: 50px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 tbody tr:nth-child(even) {
   background-color: #eaeaea;
