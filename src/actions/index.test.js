@@ -1,14 +1,6 @@
 //test fetch sucess
 //test fetch error
-import {
-  url,
-  FETCH_DATA_PENDING,
-  FETCH_DATA_SUCCESS,
-  fetchDataSuccess,
-  FETCH_DATA_ERROR,
-  fetchDataError,
-  fetchData
-} from "./index";
+import { url, fetchDataSuccess, fetchDataError, fetchData } from "./index";
 
 describe("fetch data", () => {
   it("should dispatch fetchDataSuccess", () => {

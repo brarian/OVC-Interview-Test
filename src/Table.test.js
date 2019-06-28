@@ -1,17 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Table from "./";
+import { Table } from "./Table";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { shallow } from "enzyme";
+import { fetchData } from "./actions/index";
+Enzyme.configure({ adapter: new Adapter() });
 
 describe("<Table />", () => {
   it("should render table component", () => {
     let data = [];
     let dispatch = jest.fn();
-    const div = document.createElement("div");
-    ReactDOM.render(<Table data={[]} componentDidMount={dispatch} />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const wrapper = shallow(<Table data={data} fetchData={dispatch} />);
+    expect(wrapper.hasClass("main"));
   });
   it("should check the fetchData in componentDidMount fired so there is data to display", () => {
     let data = [
@@ -27,7 +27,7 @@ describe("<Table />", () => {
       }
     ];
     const dispatch = jest.fn();
-    const wrapper = shallow(<Table data={data} componentDidMount={dispatch} />);
+    const wrapper = shallow(<Table data={data} fetchData={dispatch} />);
     expect(dispatch).toHaveBeenCalledTimes(1);
   });
 });

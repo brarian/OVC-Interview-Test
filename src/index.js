@@ -9,5 +9,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Table />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById("root") || document.createElement("div")
 );

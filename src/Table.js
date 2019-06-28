@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import "./Table.css";
 import { connect } from "react-redux";
 import { fetchData } from "./actions/index";
-class Table extends Component {
+export class Table extends Component {
   //componentDidMoubt
   componentDidMount() {
     this.props.fetchData();
   }
 
   //Render table data
-
   renderHeadings() {
     let headings = ["Name", "Email", "City", "Company"];
     return headings.map((header, i) => {
@@ -17,7 +16,8 @@ class Table extends Component {
     });
   }
   renderTable() {
-    return this.props.data.map((user, i) => {
+    const { data } = this.props;
+    return data.map((user, i) => {
       return (
         <tr key={i}>
           <td>{user.name}</td>
@@ -28,6 +28,7 @@ class Table extends Component {
       );
     });
   }
+
   render() {
     return (
       <table className="main">
@@ -39,7 +40,6 @@ class Table extends Component {
     );
   }
 }
-//mapstatetoprops
 const mapStateToProps = state => {
   return {
     data: state.data,
@@ -47,12 +47,11 @@ const mapStateToProps = state => {
     error: state.error
   };
 };
-//mapdispatchtoProps
+
 const matchDispatchToProps = dispatch => ({
   fetchData: () => dispatch(fetchData())
 });
 
-//connect
 export default connect(
   mapStateToProps,
   matchDispatchToProps
